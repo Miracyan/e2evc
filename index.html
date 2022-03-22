@@ -1,0 +1,523 @@
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0038)https://jxzhanggg.github.io/Seq2SeqVC/ -->
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+  <title>DEMO</title>
+  <style type="text/css">
+  </style>
+</head>
+
+<body>
+  <h2><strong>Improving conversion and attack capability for any-to-many voice conversion with post-processing</strong></h2>
+  <h3>Authors: </h3>
+  <p>Ziyi Chen, Hua Hua, Yuxiang Zhang, Ming Li, Pengyuan Zhang</p>
+  <h3>Address: </h3>
+  <p>Key Laboratory of Speech Acoustics & Content Understanding, Institute of Acoustics, CAS, China</p>
+  <p>University of Chinese Academy of Sciences, Beijing, China</p>
+  <p>Data Science Research Center, Duke Kunshan University, Kunshan, China</p>
+  <h3>Email: </h3>
+  <p>chenziyi@hccl.ioa.ac.cn</p>
+  <p>&nbsp;</p>
+  <hr>
+  <p>&nbsp;</p>
+
+  <p>&nbsp;</p>
+  <h3>1. Audio examples of the target speaker.  <font color="blue">Baker</font> represents audios in the databaker open source mandarin dataset. <font color="blue">MM</font> represents audios of the male speaker in M2VoC Dev set and <font color="blue">MF</font> represents audios
+    of the female speaker in M2VoC Dev set.</h3>
+
+
+  <h4>baker: </h4>
+  <table border="1">
+    <tr>
+      <td width="120px">&nbsp;
+
+      </td>
+      <td colspan="1">
+        <blockquote>
+
+          <p align="center">Example 11</p>
+
+        </blockquote>
+      </td>
+      <td colspan="1">
+        <blockquote>
+
+          <p align="center">Example 12</p>
+
+        </blockquote>
+      </td>
+      <td colspan="1">
+        <blockquote>
+
+          <p align="center">Example 13</p>
+
+        </blockquote>
+      </td>
+      <td colspan="1">
+        <blockquote>
+
+          <p align="center">Example 14</p>
+
+        </blockquote>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <div align="center">baker</div>
+      </td>
+      <td><audio src="wavs/GT/target/baker/000001.wav" controls="controls">
+          Your browser does not support the audio tag.
+        </audio></td>
+      <td><audio src="wavs/GT/target/baker/000002.wav" controls="controls">
+          Your browser does not support the audio tag.
+        </audio></td>
+      <td><audio src="wavs/GT/target/baker/000003.wav" controls="controls">
+          Your browser does not support the audio tag.
+        </audio></td>
+      <td><audio src="wavs/GT/target/baker/000004.wav" controls="controls">
+          Your browser does not support the audio tag.
+        </audio></td>
+    </tr>
+	</table>
+
+  <h4>MM: </h4>
+  <table border="1">
+    <tr>
+      <td width="120px">&nbsp;
+
+      </td>
+      <td colspan="1">
+        <blockquote>
+
+          <p align="center">Example 21</p>
+
+        </blockquote>
+      </td>
+      <td colspan="1">
+        <blockquote>
+
+          <p align="center">Example 22</p>
+
+        </blockquote>
+      </td>
+      <td colspan="1">
+        <blockquote>
+
+          <p align="center">Example 23</p>
+
+        </blockquote>
+      </td>
+      <td colspan="1">
+        <blockquote>
+
+          <p align="center">Example 24</p>
+
+        </blockquote>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <div align="center">MM</div>
+      </td>
+      <td><audio src="wavs/GT/target/MM/000013.wav" controls="controls">
+          Your browser does not support the audio tag.
+        </audio></td>
+      <td><audio src="wavs/GT/target/MM/000014.wav" controls="controls">
+          Your browser does not support the audio tag.
+        </audio></td>
+      <td><audio src="wavs/GT/target/MM/000015.wav" controls="controls">
+          Your browser does not support the audio tag.
+        </audio></td>
+      <td><audio src="wavs/GT/target/MM/000016.wav" controls="controls">
+          Your browser does not support the audio tag.
+        </audio></td>
+    </tr>
+	</table>
+   
+  <h4>MF: </h4>
+  <table border="1">
+    <tr>
+      <td width="120px">&nbsp;
+
+      </td>
+      <td colspan="1">
+        <blockquote>
+
+          <p align="center">Example 31</p>
+
+        </blockquote>
+      </td>
+      <td colspan="1">
+        <blockquote>
+
+          <p align="center">Example 32</p>
+
+        </blockquote>
+      </td>
+      <td colspan="1">
+        <blockquote>
+
+          <p align="center">Example 33</p>
+
+        </blockquote>
+      </td>
+      <td colspan="1">
+        <blockquote>
+
+          <p align="center">Example 34</p>
+
+        </blockquote>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <div align="center">MF</div>
+      </td>
+      <td><audio src="wavs/GT/target/MF/000001.wav" controls="controls">
+          Your browser does not support the audio tag.
+        </audio></td>
+      <td><audio src="wavs/GT/target/MF/000002.wav" controls="controls">
+          Your browser does not support the audio tag.
+        </audio></td>
+      <td><audio src="wavs/GT/target/MF/000003.wav" controls="controls">
+          Your browser does not support the audio tag.
+        </audio></td>
+      <td><audio src="wavs/GT/target/MF/000004.wav" controls="controls">
+          Your browser does not support the audio tag.
+        </audio></td>
+    </tr>
+	</table>
+
+  <p>&nbsp;</p>
+  <p>&nbsp;</p>
+
+  <h3>2. Voice conversion result. <font color="blue">GT</font> represents the ground truth. <font color="blue">ppgfast</font> represents conformer ppg + modified fastspeech + hifigan. <font color="blue">ppgtaco</font> represents conformer ppg + modified tacotron2 + hifigan. <font color="blue">proposed</font> represents proposed method.</h3>
+  <h4> baker : </h4>
+  <table border="1">
+    <tr>
+      <td width="120px">&nbsp;
+
+      </td>
+      <td colspan="1">
+        <blockquote>
+
+          <p align="center">Chat style utterance 1</p>
+
+        </blockquote>
+      </td>
+      <td colspan="1">
+        <blockquote>
+
+          <p align="center">Chat style utterance 2</p>
+
+        </blockquote>
+      </td>
+      <td colspan="1">
+        <blockquote>
+
+          <p align="center">Narrative style utterance 1</p>
+
+        </blockquote>
+      </td>
+      <td colspan="1">
+        <blockquote>
+
+          <p align="center">Narrative style utterance 2</p>
+
+        </blockquote>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <div align="center">GT</div>
+      </td>
+      <td><audio src="wavs/GT/src/m2vcodev/chat/000002.wav" controls="controls">
+          Your browser does not support the audio tag.
+        </audio></td>
+      <td><audio src="wavs/GT/src/m2vcodev/chat/000022.wav" controls="controls">
+          Your browser does not support the audio tag.
+        </audio></td>
+      <td><audio src="wavs/GT/src/m2vcodev/story/000011.wav" controls="controls">
+          Your browser does not support the audio tag.
+        </audio></td>
+      <td><audio src="wavs/GT/src/m2vcodev/story/000018.wav" controls="controls">
+          Your browser does not support the audio tag.
+        </audio></td>
+    </tr>
+    <tr>
+      <td>
+        <div align="center">ppgfast</div>
+      </td>
+      <td width="149"><audio src="wavs/gen/ppgfast/chat_000002_to_baker.wav" controls="controls">
+          Your browser does not support the audio tag.
+        </audio>
+      </td>
+      <td width="149"><audio src="wavs/gen/ppgfast/chat_000022_to_baker.wav" controls="controls">
+          Your browser does not support the audio tag.
+        </audio></td>
+      <td width="149"><audio src="wavs/gen/ppgfast/story_000011_to_baker.wav" controls="controls">
+          Your browser does not support the audio tag.
+        </audio></td>
+      <td width="149"><audio src="wavs/gen/ppgfast/story_000018_to_baker.wav" controls="controls">
+          Your browser does not support the audio tag.
+        </audio></td>
+    </tr>
+    <tr>
+      <td>
+        <div align="center">ppgtaco</div>
+      </td>
+      <td width="149"><audio src="wavs/gen/ppgtaco/chat_000002_to_baker.wav" controls="controls">
+          Your browser does not support the audio tag.
+        </audio>
+      </td>
+      <td width="149"><audio src="wavs/gen/ppgtaco/chat_000022_to_baker.wav" controls="controls">
+          Your browser does not support the audio tag.
+        </audio></td>
+      <td width="149"><audio src="wavs/gen/ppgtaco/story_000011_to_baker.wav" controls="controls">
+          Your browser does not support the audio tag.
+        </audio></td>
+      <td width="149"><audio src="wavs/gen/ppgtaco/story_000018_to_baker.wav" controls="controls">
+          Your browser does not support the audio tag.
+        </audio></td>
+    </tr>
+    <tr>
+      <td>
+        <div align="center">proposed</div>
+      </td>
+      <td width="149"><audio src="wavs/gen/proposed/chat_000002_to_baker.wav" controls="controls">
+          Your browser does not support the audio tag.
+        </audio>
+      </td>
+      <td width="149"><audio src="wavs/gen/proposed/chat_000022_to_baker.wav" controls="controls">
+          Your browser does not support the audio tag.
+        </audio></td>
+      <td width="149"><audio src="wavs/gen/proposed/story_000011_to_baker.wav" controls="controls">
+          Your browser does not support the audio tag.
+        </audio></td>
+      <td width="149"><audio src="wavs/gen/proposed/story_000018_to_baker.wav" controls="controls">
+          Your browser does not support the audio tag.
+        </audio></td>
+    </tr>
+  </table>
+  <h4> MM : </h4>
+  <table border="1">
+    <tr>
+      <td width="120px">&nbsp;
+
+      </td>
+      <td colspan="1">
+        <blockquote>
+
+          <p align="center">Chat style utterance 1</p>
+
+        </blockquote>
+      </td>
+      <td colspan="1">
+        <blockquote>
+
+          <p align="center">Chat style utterance 2</p>
+
+        </blockquote>
+      </td>
+      <td colspan="1">
+        <blockquote>
+
+          <p align="center">Narrative style utterance 1</p>
+
+        </blockquote>
+      </td>
+      <td colspan="1">
+        <blockquote>
+
+          <p align="center">Narrative style utterance 2</p>
+
+        </blockquote>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <div align="center">GT</div>
+      </td>
+      <td><audio src="wavs/GT/src/m2vcodev/chat/000011.wav" controls="controls">
+          Your browser does not support the audio tag.
+        </audio></td>
+      <td><audio src="wavs/GT/src/m2vcodev/chat/000012.wav" controls="controls">
+          Your browser does not support the audio tag.
+        </audio></td>
+      <td><audio src="wavs/GT/src/m2vcodev/story/000004.wav" controls="controls">
+          Your browser does not support the audio tag.
+        </audio></td>
+      <td><audio src="wavs/GT/src/m2vcodev/story/000012.wav" controls="controls">
+          Your browser does not support the audio tag.
+        </audio></td>
+    </tr>
+    <tr>
+      <td>
+        <div align="center">ppgfast</div>
+      </td>
+      <td width="149"><audio src="wavs/gen/ppgfast/chat_000011_to_MM.wav" controls="controls">
+          Your browser does not support the audio tag.
+        </audio>
+      </td>
+      <td width="149"><audio src="wavs/gen/ppgfast/chat_000012_to_MM.wav" controls="controls">
+          Your browser does not support the audio tag.
+        </audio></td>
+      <td width="149"><audio src="wavs/gen/ppgfast/story_000004_to_MM.wav" controls="controls">
+          Your browser does not support the audio tag.
+        </audio></td>
+      <td width="149"><audio src="wavs/gen/ppgfast/story_000012_to_MM.wav" controls="controls">
+          Your browser does not support the audio tag.
+        </audio></td>
+    </tr>
+    <tr>
+      <td>
+        <div align="center">ppgtaco</div>
+      </td>
+      <td width="149"><audio src="wavs/gen/ppgtaco/chat_000011_to_MM.wav" controls="controls">
+          Your browser does not support the audio tag.
+        </audio>
+      </td>
+      <td width="149"><audio src="wavs/gen/ppgtaco/chat_000012_to_MM.wav" controls="controls">
+          Your browser does not support the audio tag.
+        </audio></td>
+      <td width="149"><audio src="wavs/gen/ppgtaco/story_000004_to_MM.wav" controls="controls">
+          Your browser does not support the audio tag.
+        </audio></td>
+      <td width="149"><audio src="wavs/gen/ppgtaco/story_000012_to_MM.wav" controls="controls">
+          Your browser does not support the audio tag.
+        </audio></td>
+    </tr>
+    <tr>
+      <td>
+        <div align="center">proposed</div>
+      </td>
+      <td width="149"><audio src="wavs/gen/proposed/chat_000011_to_MM.wav" controls="controls">
+          Your browser does not support the audio tag.
+        </audio>
+      </td>
+      <td width="149"><audio src="wavs/gen/proposed/chat_000012_to_MM.wav" controls="controls">
+          Your browser does not support the audio tag.
+        </audio></td>
+      <td width="149"><audio src="wavs/gen/proposed/story_000004_to_MM.wav" controls="controls">
+          Your browser does not support the audio tag.
+        </audio></td>
+      <td width="149"><audio src="wavs/gen/proposed/story_000012_to_MM.wav" controls="controls">
+          Your browser does not support the audio tag.
+        </audio></td>
+    </tr>
+  </table>
+  <h4> MF : </h4>
+  <table border="1">
+    <tr>
+      <td width="120px">&nbsp;
+
+      </td>
+      <td colspan="1">
+        <blockquote>
+
+          <p align="center">Chat style utterance 1</p>
+
+        </blockquote>
+      </td>
+      <td colspan="1">
+        <blockquote>
+
+          <p align="center">Chat style utterance 2</p>
+
+        </blockquote>
+      </td>
+      <td colspan="1">
+        <blockquote>
+
+          <p align="center">Narrative style utterance 1</p>
+
+        </blockquote>
+      </td>
+      <td colspan="1">
+        <blockquote>
+
+          <p align="center">Narrative style utterance 2</p>
+
+        </blockquote>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <div align="center">GT</div>
+      </td>
+      <td><audio src="wavs/GT/src/m2vcodev/chat/000003.wav" controls="controls">
+          Your browser does not support the audio tag.
+        </audio></td>
+      <td><audio src="wavs/GT/src/m2vcodev/chat/000012.wav" controls="controls">
+          Your browser does not support the audio tag.
+        </audio></td>
+      <td><audio src="wavs/GT/src/m2vcodev/story/000009.wav" controls="controls">
+          Your browser does not support the audio tag.
+        </audio></td>
+      <td><audio src="wavs/GT/src/m2vcodev/story/000012.wav" controls="controls">
+          Your browser does not support the audio tag.
+        </audio></td>
+    </tr>
+    <tr>
+      <td>
+        <div align="center">ppgfast</div>
+      </td>
+      <td width="149"><audio src="wavs/gen/ppgfast/chat_000003_to_MF.wav" controls="controls">
+          Your browser does not support the audio tag.
+        </audio>
+      </td>
+      <td width="149"><audio src="wavs/gen/ppgfast/chat_000012_to_MF.wav" controls="controls">
+          Your browser does not support the audio tag.
+        </audio></td>
+      <td width="149"><audio src="wavs/gen/ppgfast/story_000009_to_MF.wav" controls="controls">
+          Your browser does not support the audio tag.
+        </audio></td>
+      <td width="149"><audio src="wavs/gen/ppgfast/story_000012_to_MF.wav" controls="controls">
+          Your browser does not support the audio tag.
+        </audio></td>
+    </tr>
+    <tr>
+      <td>
+        <div align="center">ppgtaco</div>
+      </td>
+      <td width="149"><audio src="wavs/gen/ppgtaco/chat_000003_to_MF.wav" controls="controls">
+          Your browser does not support the audio tag.
+        </audio>
+      </td>
+      <td width="149"><audio src="wavs/gen/ppgtaco/chat_000012_to_MF.wav" controls="controls">
+          Your browser does not support the audio tag.
+        </audio></td>
+      <td width="149"><audio src="wavs/gen/ppgtaco/story_000009_to_MF.wav" controls="controls">
+          Your browser does not support the audio tag.
+        </audio></td>
+      <td width="149"><audio src="wavs/gen/ppgtaco/story_000012_to_MF.wav" controls="controls">
+          Your browser does not support the audio tag.
+        </audio></td>
+    </tr>
+    <tr>
+      <td>
+        <div align="center">proposed</div>
+      </td>
+      <td width="149"><audio src="wavs/gen/proposed/chat_000003_to_MF.wav" controls="controls">
+          Your browser does not support the audio tag.
+        </audio>
+      </td>
+      <td width="149"><audio src="wavs/gen/proposed/chat_000012_to_MF.wav" controls="controls">
+          Your browser does not support the audio tag.
+        </audio></td>
+      <td width="149"><audio src="wavs/gen/proposed/story_000009_to_MF.wav" controls="controls">
+          Your browser does not support the audio tag.
+        </audio></td>
+      <td width="149"><audio src="wavs/gen/proposed/story_000012_to_MF.wav" controls="controls">
+          Your browser does not support the audio tag.
+        </audio></td>
+    </tr>
+  </table>
+  <p>&nbsp;</p>
+</body>
+
+</html>
